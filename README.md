@@ -1,4 +1,10 @@
 office-info
 ===========
 
-A app that recieved office information in JSON format and updates the code accordingly
+A small app that displays whether workers are in(green) or out(red) of office based on data in a JSON file.
+
+Very simple script and I chose write it in vanilla JS. jQuery should be easier.
+
+See more projects at:
+
+http://function.webknit.co.uk/

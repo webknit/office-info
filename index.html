@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+ 
+<head>
+	
+	<meta charset="utf-8">
+	<style type="text/css">
+	
+		.main-body {
+			margin: 2em auto 0;
+			max-width: 700px;
+		}
+		
+		.in {
+			color: green;
+		}
+		
+		.out {
+			color: red;
+		}
+	
+	</style>
+
+</head>
+
+<body> 
+	
+	<div class="main-body">
+
+		<h1>Office Info</h1>
+		
+		<p>A small app that displays whether workers are in(green) or out(red) of office based on data in a JSON file.</p>
+		
+		<p>Very simple script and I chose write it in vanilla JS. jQuery should be easier.</p>
+		
+		<ul id="employees">
+		
+		</ul>
+
+		<br><br>
+        <a href="http://function.webknit.co.uk/">www.function.webknit.co.uk</a>
+
+	</div><!-- .main-body -->
+	
+	<script type="text/javascript">
+	
+		// Create the XMLHttpRequest object
+	
+		var request = new XMLHttpRequest();
+		
+		// function onreadystatechange
+		request.onreadystatechange = function () {
+		
+		// If it's ok? jQuery doesn't need all this
+		if (request.readyState === 4) {
+		  
+		  	// Stick the response into a variable and parse it
+		  	var employees = JSON.parse(request.responseText);
+		    
+		    // Loop through the JSON
+		    for (var i=0; i < employees.length; i++) {
+		    
+		    	// If they're on offive add "in" class
+		    	if(employees[i].inoffice === true) {
+		    	
+		    		document.getElementById("employees").innerHTML += "<li class='in'>" + employees[i].name + "</li>";
+		    	
+		    	}
+		    	
+		    	// If they're oout offive add "out" class
+		    	else {
+		    	
+		    		document.getElementById("employees").innerHTML += "<li class='out'>" + employees[i].name + "</li>";
+		    	
+		    	}
+		    
+			}
+		    
+		   }
+		   
+		};
+		
+		// Request the data on the server
+		request.open('GET', 'data.json');
+		
+		// Sends the request to the server
+		request.send();
+	
+	</script>
+
+</body>
+</html>
+
